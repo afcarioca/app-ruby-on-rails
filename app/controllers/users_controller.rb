@@ -1,4 +1,22 @@
 class UsersController < ApplicationController
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+        flash[:notice] = 'Cadastro atualizado com sucesso!'
+        redirect_to @user
+    else
+        render action: :edit
+    end
+  end
+
+  def show
+    @user = User.find(params[:id])
+  end
+
   def new
     @user = User.new
   end
